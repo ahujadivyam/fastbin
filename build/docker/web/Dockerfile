@@ -4,7 +4,7 @@ WORKDIR /app
 
 RUN apk --no-cache add curl nodejs npm
 
-RUN npm install -D tailwindcss
+RUN npm install -D tailwindcss@3
 
 RUN go install github.com/a-h/templ/cmd/templ@latest
 
@@ -12,6 +12,9 @@ COPY go.mod go.sum ./
 RUN go mod download
 
 COPY . .
+
+RUN go get github.com/a-h/templ@latest
+RUN go mod tidy
 
 RUN templ generate
 

@@ -57,6 +57,8 @@ spec:
                 configMapKeyRef:
                   name: fastbin-config
                   key: DB_PASSWORD
+            - name: PGDATA
+              value: /var/lib/postgresql/data/pgdata
           volumeMounts:
             - mountPath: /var/lib/postgresql/data
               name: psql-storage
